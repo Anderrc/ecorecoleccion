@@ -53,6 +53,28 @@ const Login = () => {
 							className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
 							/>
 						</div>
+						<div className="mb-4">
+							<label
+								htmlFor="password"
+								className="block text-gray-700 font-medium mb-1"
+							>
+								Contraseña
+							</label>
+							<input
+								id="password"
+								type="password"
+								placeholder="••••••••"
+								className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+							/>
+						</div>
+						<button
+							type="submit"
+							className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition duration-300"
+							>
+							Entrar
+						</button>
+
+
 					</form>
 
 				</section>
