@@ -73,6 +73,13 @@ const Login = () => {
 							>
 							Entrar
 						</button>
+						<footer className="text-center text-sm text-gray-500 mt-4">
+							¿No tienes cuenta?{" "}
+							<a href="#" className="text-green-500 hover:underline">
+								Regístrate
+							</a>
+						</footer>
+
 
 
 					</form>
