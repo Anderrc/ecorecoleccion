@@ -13,9 +13,9 @@ const Login = () => {
 				<div className="absolute inset-0 bg-green-800/20"></div>
 				
 				<section className="bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-lg w-full max-w-sm relative z-10">
-				{/* Aquí irá el header, formulario y footer */}
+				
 				<header className="mb-6 text-center">
-					{/* Icono reciclaje */}
+					
 					<svg
 						className="mx-auto mb-3 w-10 h-10 text-green-500"
 						fill="none"
