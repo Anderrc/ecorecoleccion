@@ -1,7 +1,8 @@
 const express = require('express');
-const { crearSolicitud } = require('../controllers/solicitudController');
 const router = express.Router();
+const solicitudController = require('../controllers/solicitudController');
+const authMiddleware = require('../middleware/authMiddleware');
 
-router.post('/', crearSolicitud);
+router.post('/crear', authMiddleware, solicitudController.crearSolicitud);
 
 module.exports = router;

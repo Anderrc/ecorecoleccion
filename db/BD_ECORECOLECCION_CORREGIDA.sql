@@ -46,6 +46,12 @@ CREATE TABLE Tienda(
     Descuento int NOT NULL
 );
 
+-- Insertar datos de ejemplo en la tabla Tienda
+INSERT INTO Tienda (Nombre, Punto_generado, Descuento) VALUES 
+('Tienda A', 100, 10),
+('Tienda B', 200, 15),
+('Tienda C', 300, 20);
+
 -- Recrear tabla EMP_REC
 CREATE TABLE EMP_REC(
     ID_EMP_REC int PRIMARY KEY AUTO_INCREMENT,
@@ -72,6 +78,13 @@ CREATE TABLE residuos(
     FOREIGN KEY (Punto_Generado) REFERENCES Tienda(Punto_generado)
 );
 
+-- Insertar datos por defecto en residuos
+INSERT INTO residuos (Nombre_Residuo, Tipo_Recoleccion, Punto_Generado, Tipo_Prod) VALUES
+('Orgánicos', 'En bolsa', 100, 1),
+('Inorgánicos', 'En cajas', 200, 2),
+('Peligrosos', 'Camion', 300, 3);
+
+
 -- Recrear tabla Recolecciones
 CREATE TABLE Recolecciones(
     ID_Recol int PRIMARY KEY AUTO_INCREMENT,
@@ -94,6 +107,8 @@ CREATE TABLE solicitudes(
     descripcion text NOT NULL,
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     estado ENUM('pendiente', 'aprobada', 'rechazada') DEFAULT 'pendiente',
+    tipo_residuo INT,
+    FOREIGN KEY (tipo_residuo) REFERENCES residuos(ID_Residuos),
     FOREIGN KEY (usuario_id) REFERENCES Usuarios(ID_User)
 );
 
