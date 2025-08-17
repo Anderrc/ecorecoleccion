@@ -8,7 +8,7 @@ import { useAuth } from '@/contexts/AuthContext';
 
 export const LoginForm = () => {
 	const router = useRouter();
-	
+
 	const { isAuthenticated, isLoading } = useAuth();
 
 	// Si ya está autenticado, redirigir una sola vez
@@ -17,7 +17,7 @@ export const LoginForm = () => {
 			router.replace('/dashboard');
 		}
 	}, [isAuthenticated, isLoading, router]);
-	
+
 	const [form, setForm] = useState({
 		correo: '',
 		password: '',
@@ -99,10 +99,9 @@ export const LoginForm = () => {
 				<div
 					className="absolute inset-0 bg-cover bg-center filter blur-none"
 					style={{
-						backgroundImage:
-							"url('https://images.unsplash.com/photo-1719153863464-b2ee7e28b6df?q=80&w=1169&auto=format&fit=crop')",
+						backgroundImage: "url('/background.jpg')",
 					}}
-				/>
+				></div>
 				<div className="absolute inset-0 bg-green-800/20" />
 
 				<Card className="w-full max-w-md mx-4 card-overlay p-8 relative z-10">
