@@ -54,9 +54,14 @@ class ApiClient {
 			response => response,
 			error => {
 				if (error.response?.status === 401) {
-					// Token expirado o inválido
-					localStorage.removeItem('authToken');
-					window.location.href = '/login';
+					// Solo redirigir si no estamos en la página de login
+					const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
+					if (currentPath !== '/login' && currentPath !== '/registro') {
+						// Token expirado o inválido - solo para páginas protegidas
+						localStorage.removeItem('authToken');
+						localStorage.removeItem('user');
+						window.location.href = '/login';
+					}
 				}
 				return Promise.reject(error);
 			},

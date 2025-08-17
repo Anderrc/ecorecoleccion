@@ -1,4 +1,5 @@
 import React from 'react';
+import { UserMenu } from './UserMenu';
 
 interface HeaderProps {
   title: string;
@@ -55,12 +56,7 @@ const Header: React.FC<HeaderProps> = ({
             </button>
           )}
           
-          <button className="flex items-center space-x-2 p-2 text-gray-400 hover:text-gray-500 transition-eco">
-            <span className="sr-only">Menú usuario</span>
-            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-eco-primary rounded-full flex items-center justify-center text-white text-xs sm:text-sm font-medium">
-              U
-            </div>
-          </button>
+          <UserMenu />
         </div>
       </div>
       

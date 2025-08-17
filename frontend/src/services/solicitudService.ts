@@ -12,6 +12,7 @@ export interface Solicitud {
 export interface CreateSolicitudRequest {
   usuario_id: number;
   descripcion: string;
+  tipo_residuo: number; // id del residuo seleccionado
 }
 
 export interface SolicitudResponse {
@@ -31,11 +32,11 @@ export class SolicitudService {
   static async crear(solicitudData: CreateSolicitudRequest): Promise<SolicitudResponse> {
     try {
       const response = await apiClient.post<SolicitudResponse>(
-        this.BASE_PATH,
+        `${this.BASE_PATH}/crear`,
         solicitudData
       );
       return response.data;
-    } catch (error) {
+  } catch {
       throw new Error('Error al crear la solicitud');
     }
   }
@@ -47,7 +48,7 @@ export class SolicitudService {
     try {
       const response = await apiClient.get<Solicitud[]>(this.BASE_PATH);
       return response.data;
-    } catch (error) {
+  } catch {
       throw new Error('Error al obtener solicitudes');
     }
   }
@@ -59,7 +60,7 @@ export class SolicitudService {
     try {
       const response = await apiClient.get<Solicitud[]>(`${this.BASE_PATH}/usuario/${usuarioId}`);
       return response.data;
-    } catch (error) {
+  } catch {
       throw new Error('Error al obtener solicitudes del usuario');
     }
   }
@@ -71,7 +72,7 @@ export class SolicitudService {
     try {
       const response = await apiClient.get<Solicitud>(`${this.BASE_PATH}/${id}`);
       return response.data;
-    } catch (error) {
+  } catch {
       throw new Error('Solicitud no encontrada');
     }
   }
@@ -86,7 +87,7 @@ export class SolicitudService {
         solicitudData
       );
       return response.data;
-    } catch (error) {
+  } catch {
       throw new Error('Error al actualizar solicitud');
     }
   }
@@ -101,7 +102,7 @@ export class SolicitudService {
         { estado }
       );
       return response.data;
-    } catch (error) {
+  } catch {
       throw new Error('Error al cambiar estado de solicitud');
     }
   }
@@ -112,7 +113,7 @@ export class SolicitudService {
   static async delete(id: number): Promise<void> {
     try {
       await apiClient.delete(`${this.BASE_PATH}/${id}`);
-    } catch (error) {
+  } catch {
       throw new Error('Error al eliminar solicitud');
     }
   }
@@ -124,7 +125,7 @@ export class SolicitudService {
     try {
       const response = await apiClient.get<Solicitud[]>(`${this.BASE_PATH}/pendientes`);
       return response.data;
-    } catch (error) {
+  } catch {
       throw new Error('Error al obtener solicitudes pendientes');
     }
   }

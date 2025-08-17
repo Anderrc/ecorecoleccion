@@ -6,6 +6,13 @@ const db = require('./config/db');
 const authRoutes = require('./routes/auth');
 const solicitudRoutes = require('./routes/solicitudes');
 const rolesRoutes = require('./routes/roles');
+const criteriosRoutes = require('./routes/criterios');
+const residuosRoutes = require('./routes/residuos');
+const dashboardRoutes = require('./routes/dashboard');
+const reportesRoutes = require('./routes/reportes');
+const rutasRoutes = require('./routes/rutas');
+const usuariosRoutes = require('./routes/usuarios');
+const recoleccionesRoutes = require('./routes/recolecciones');
 
 const app = express();
 
@@ -30,6 +37,13 @@ app.use((req, res, next) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/solicitudes', solicitudRoutes);
 app.use('/api/roles', rolesRoutes);
+app.use('/api/criterios', criteriosRoutes);
+app.use('/api/residuos', residuosRoutes);
+app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/reportes', reportesRoutes);
+app.use('/api/rutas', rutasRoutes);
+app.use('/api/usuarios', usuariosRoutes);
+app.use('/api/recolecciones', recoleccionesRoutes);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {

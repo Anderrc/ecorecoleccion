@@ -42,6 +42,80 @@ export interface AuthResponse {
  */
 export class AuthService {
   /**
+   * Verificar si el token es válido
+   */
+  static async verifyToken(): Promise<AuthResponse> {
+    return handleApiCall(async () => {
+      const response = await apiClient.get<AuthResponse>('/auth/verify');
+      return response.data;
+    });
+  }
+
+  /**
+   * Validar si el token JWT ha expirado
+   */
+  static isTokenExpired(token: string): boolean {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const currentTime = Date.now() / 1000;
+      return payload.exp < currentTime;
+    } catch (error) {
+      console.error('Error al decodificar token:', error);
+      return true; // Si no se puede decodificar, considerar expirado
+    }
+  }
+
+  /**
+   * Obtener información del token
+   */
+  static getTokenInfo(token: string): {
+    userId: number;
+    email: string;
+    role: number;
+    exp: number;
+    iat: number;
+  } | null {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return {
+        userId: payload.id,
+        email: payload.correo,
+        role: payload.rol,
+        exp: payload.exp,
+        iat: payload.iat
+      };
+    } catch (error) {
+      console.error('Error al decodificar token:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Verificar si hay una sesión válida
+   */
+  static hasValidSession(): boolean {
+    if (typeof window === 'undefined') return false;
+    
+    const token = localStorage.getItem('authToken');
+    const user = localStorage.getItem('user');
+    
+    if (!token || !user) return false;
+    
+    return !this.isTokenExpired(token);
+  }
+
+  /**
+   * Limpiar sesión expirada
+   */
+  static clearExpiredSession(): void {
+    if (typeof window === 'undefined') return;
+    
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('user');
+    apiClient.clearAuthToken();
+  }
+
+  /**
    * Registrar un nuevo usuario
    */
   static async register(userData: CreateUsuarioRequest): Promise<{ message: string; id: number }> {
