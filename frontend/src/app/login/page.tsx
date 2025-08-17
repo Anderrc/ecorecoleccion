@@ -1,3 +1,4 @@
+import { url } from 'inspector';
 import React from 'react';
 
 const Login = () => {
@@ -6,8 +7,7 @@ const Login = () => {
 			<div
   				className="absolute inset-0 bg-cover bg-center filter blur-none"
  				style={{
-    			backgroundImage:
-     			 "url('https://images.unsplash.com/photo-1719153863464-b2ee7e28b6df?q=80&w=1169&auto=format&fit=crop')",
+    			backgroundImage: "url('/background.jpg')"
   				}}
 				></div>
 				<div className="absolute inset-0 bg-green-800/20"></div>
@@ -50,7 +50,7 @@ const Login = () => {
 							id="email"
 							type="email"
 							placeholder="ejemplo@correo.com"
-							className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+							className="text-gray-900 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
 							/>
 						</div>
 						<div className="mb-4">
@@ -64,7 +64,7 @@ const Login = () => {
 								id="password"
 								type="password"
 								placeholder="••••••••"
-								className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+								className="text-gray-900 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
 							/>
 						</div>
 						<button
